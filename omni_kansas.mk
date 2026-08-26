@@ -1,29 +1,15 @@
-#
-# Copyright (C) 2026 The Android Open Source Project
-# Copyright (C) 2026 SebaUbuntu's TWRP device tree generator
-#
-# SPDX-License-Identifier: Apache-2.0
-#
+# Inherit TWRP / Omni base configs if present
+$(call inherit-product-if-exists, vendor/omni/config/common.mk)
+$(call inherit-product-if-exists, vendor/twrp/config/common.mk)
 
-# Inherit from those products. Most specific first.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
-
-# Inherit some common Omni stuff.
-$(call inherit-product, vendor/omni/config/common.mk)
-
-# Inherit from kansas device
+# Inherit device configuration
 $(call inherit-product, device/motorola/kansas/device.mk)
 
+# Device Identifiers
 PRODUCT_DEVICE := kansas
 PRODUCT_NAME := omni_kansas
-PRODUCT_BRAND := motorola
-PRODUCT_MODEL := kansas
+PRODUCT_BRAND := Motorola
+PRODUCT_MODEL := Moto G Pure
 PRODUCT_MANUFACTURER := motorola
 
 PRODUCT_GMS_CLIENTID_BASE := android-motorola
-
-PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRIVATE_BUILD_DESC="kansas_g_vext-user 13 V1VKS35.22-37-3-2 aa328 release-keys"
-
-BUILD_FINGERPRINT := motorola/kansas_g_vext/kansas:13/V1VKS35.22-37-3-2/aa328:user/release-keys
